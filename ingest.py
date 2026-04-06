@@ -17,6 +17,7 @@ def get_vectorstore():
     return Chroma(
         collection_name=COLLECTION_NAME,
         embedding_function=get_embeddings(),
+        persist_directory= PERSISTENT_PATH
     )
 
 def ingest_pdf(pdf_path: str):

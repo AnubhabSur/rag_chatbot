@@ -7,7 +7,6 @@ import time
 
 SYSTEM_PROMPT = """You are a helpful AI assistant 
 with access to a knowledge base.
-
 Your behavior:
 - Answer ONLY based on the retrieved context from the knowledge base.
 - If no relevant info is found, say: "I could not find relevant information in the uploaded documents."

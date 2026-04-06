@@ -40,5 +40,12 @@ with gr.Blocks(title="RAG Chatbot") as demo:
         with gr.Column(scale=2):
             gr.ChatInterface(fn=chat)
 
+if __name == "__main__":
+    demo.launch(
+        server_name="0.0.0.0",
+        server_port=7860,
+        share=False,
+        show_error=True
+    )
 
 demo.launch()
