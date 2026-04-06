@@ -1,20 +1,23 @@
 FROM python:3.11-slim
-
-RUN useradd -m -u 1000 user
-USER user
-ENV PATH="D:\rag_chatbot\.env"
-
-WORKDIR /app
-
-COPY --chown=user requirements.txt requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY --chown=user app.py .
-COPY --chown=user ingest.py .
-COPY --chown=user rag.py .
-
-RUN mkdir -p /data
-
-EXPOSE 7860
-
-CMD ["python", "app.py"]
+   
+   RUN useradd -m -u 1000 user
+   USER root
+   
+   WORKDIR /app
+   
+   COPY requirements.txt requirements.txt
+   RUN pip install --no-cache-dir --upgrade pip && \
+       pip install --no-cache-dir -r requirements.txt
+   
+   COPY app.py .
+   COPY ingest.py .
+   COPY rag.py .
+   
+   RUN mkdir -p /data && chown -R user:user /app /data
+   
+   USER user
+   ENV PATH="/home/user/.local/bin:$PATH"
+   
+   EXPOSE 7860
+   
+   CMD ["python", "app.py"]
